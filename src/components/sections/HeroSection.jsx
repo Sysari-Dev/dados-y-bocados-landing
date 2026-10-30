@@ -1,31 +1,39 @@
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { UtensilsCrossed, MessageCircle } from 'lucide-react';
-import logo from '../../assets/icons/logo.png';
+import AnimatedLogo from '../AnimatedLogo';
 import { BUSINESS_INFO } from '../../constants/businessInfo';
 
 export default function HeroSection() {
+  const prefersReducedMotion = useReducedMotion();
   const whatsappUrl = `https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent(
     BUSINESS_INFO.whatsappMessage
   )}`;
 
   return (
-    <section 
-      id="inicio" 
-      className="relative flex flex-col justify-start items-center text-center pt-4 sm:pt-6 pb-12 overflow-hidden"
+    <section
+      id="inicio"
+      className="relative flex flex-col items-center text-center pt-6 sm:pt-10 pb-16 md:pb-24 overflow-hidden"
     >
-      <div className="absolute top-28 left-1/2 -translate-x-1/2 w-64 sm:w-80 h-64 sm:h-80 bg-brand-gold/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-24 left-1/2 -translate-x-1/2 w-64 sm:w-80 h-64 sm:h-80 bg-brand-gold/15 rounded-full blur-3xl pointer-events-none" />
 
       <motion.div
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative z-10 mb-3"
+        initial={{ opacity: 0 }}
+        animate={
+          prefersReducedMotion
+            ? { opacity: 1 }
+            : { opacity: 1, y: [0, -8, 0] }
+        }
+        transition={
+          prefersReducedMotion
+            ? { duration: 0.5 }
+            : {
+                opacity: { duration: 0.5 },
+                y: { duration: 6.5, repeat: Infinity, ease: 'easeInOut', delay: 2.8 },
+              }
+        }
+        className="relative z-10 mb-2 flex justify-center"
       >
-        <img 
-          src={logo} 
-          alt={BUSINESS_INFO.name} 
-          className="w-32 sm:w-36 md:w-44 h-auto mx-auto drop-shadow-[0_0_25px_rgba(255,158,27,0.35)]"
-        />
+        <AnimatedLogo className="w-full max-w-[18rem] sm:max-w-[20rem] md:max-w-[22rem] aspect-square drop-shadow-[0_0_25px_rgba(249,185,51,0.28)]" />
       </motion.div>
 
       <motion.h1

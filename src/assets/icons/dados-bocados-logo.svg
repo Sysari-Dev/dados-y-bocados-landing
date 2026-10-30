@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Dados &amp; Bocados — Sabor, Juegos, Familia">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap');
+
+      .txt{font-family:'Bebas Neue','Oswald',Impact,'Arial Narrow',sans-serif;text-anchor:middle}
+      .title{font-size:84px;letter-spacing:2px;fill:#FFF8EC}
+      .tag{font-size:18px;letter-spacing:5px;fill:#E9B04A}
+
+      /* 1. Aro dorado que se dibuja */
+      .ring{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.6s ease-out forwards}
+      @keyframes draw{to{stroke-dashoffset:0}}
+
+      /* 2. Dados caen con rebote y luego flotan */
+      .die{transform-box:fill-box;transform-origin:50% 100%;opacity:0;
+           animation:drop .9s cubic-bezier(.3,1.5,.5,1) .3s forwards, float 4s ease-in-out 1.8s infinite}
+      .die--small{animation-delay:.55s,2.3s}
+      @keyframes drop{from{opacity:0;transform:translateY(-60px)}to{opacity:1;transform:translateY(0)}}
+      @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+      /* 3. Puntos de los dados titilan */
+      .pip{animation:twinkle 2.8s ease-in-out infinite}
+      .pip:nth-child(3n){animation-delay:.9s}
+      .pip:nth-child(3n+1){animation-delay:1.8s}
+      @keyframes twinkle{0%,100%{opacity:1}50%{opacity:.45}}
+
+      /* 4. Cartas se abren en abanico */
+      .card{transform-box:fill-box;transform-origin:50% 100%;transform:rotate(var(--r));
+            animation:fan .8s cubic-bezier(.2,1.4,.4,1) 1.1s both}
+      @keyframes fan{from{opacity:0;transform:rotate(0deg)}to{opacity:1;transform:rotate(var(--r))}}
+
+      /* 5. Textos aparecen + destello */
+      .rise{animation:rise .7s ease-out both}
+      .d1{animation-delay:1.4s}.d2{animation-delay:1.6s}.d3{animation-delay:2.1s}
+      @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+      .divider{transform-box:fill-box;transform-origin:center;animation:grow .7s ease-out 1.9s both}
+      @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+      .shine{animation:shine 4s ease-in-out 2.6s infinite}
+      @keyframes shine{0%{transform:translateX(0)}55%,100%{transform:translateX(820px)}}
+
+      @media (prefers-reduced-motion:reduce){
+        *{animation:none!important}
+        .ring{stroke-dashoffset:0}
+        .die{opacity:1}
+      }
+    </style>
+
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="face" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3D2617"/><stop offset="1" stop-color="#1A0F08"/>
+    </linearGradient>
+    <linearGradient id="faceDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2B1A0F"/><stop offset="1" stop-color="#120A05"/>
+    </linearGradient>
+    <radialGradient id="pip" cx=".4" cy=".35" r=".7">
+      <stop offset="0" stop-color="#FFF1B8"/><stop offset=".55" stop-color="#F2BE4E"/><stop offset="1" stop-color="#B9761E"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFE29A"/><stop offset=".5" stop-color="#E9A93A"/><stop offset="1" stop-color="#B5701C"/>
+    </linearGradient>
+    <linearGradient id="shineGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#FFE29A" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="titleClip">
+      <text class="txt title" x="300" y="382">DADOS &amp;</text>
+      <text class="txt title" x="300" y="458">BOCADOS</text>
+    </clipPath>
+  </defs>
+
+  <!-- Fondo (bórralo si tu landing ya es oscura) -->
+  <circle cx="300" cy="300" r="280" fill="#120A05"/>
+  <circle class="ring" cx="300" cy="300" r="280" fill="none" stroke="url(#gold)" stroke-width="5" pathLength="1" filter="url(#glow)"/>
+
+  <!-- Brillo base -->
+  <ellipse cx="318" cy="272" rx="170" ry="16" fill="none" stroke="#E9A93A" stroke-width="3" opacity=".55" filter="url(#glow)"/>
+
+  <!-- Dado grande -->
+  <g class="die" filter="url(#glow)">
+    <g stroke="url(#gold)" stroke-width="4" stroke-linejoin="round">
+      <polygon points="250,70 330,110 250,150 170,110" fill="url(#face)"/>
+      <polygon points="170,110 250,150 250,255 170,215" fill="url(#face)"/>
+      <polygon points="250,150 330,110 330,215 250,255" fill="url(#faceDark)"/>
+    </g>
+    <g fill="url(#pip)" transform="matrix(80,40,80,-40,170,110)">
+      <circle class="pip" cx=".22" cy=".22" r=".08"/><circle class="pip" cx=".78" cy=".22" r=".08"/>
+      <circle class="pip" cx=".5" cy=".5" r=".08"/><circle class="pip" cx=".22" cy=".78" r=".08"/>
+      <circle class="pip" cx=".78" cy=".78" r=".08"/>
+    </g>
+    <g fill="url(#pip)" transform="matrix(80,40,0,105,170,110)">
+      <circle class="pip" cx=".27" cy=".25" r=".08"/><circle class="pip" cx=".73" cy=".25" r=".08"/>
+      <circle class="pip" cx=".27" cy=".75" r=".08"/><circle class="pip" cx=".73" cy=".75" r=".08"/>
+    </g>
+    <g fill="url(#pip)" transform="matrix(80,-40,0,105,250,150)">
+      <circle class="pip" cx=".28" cy=".28" r=".08"/><circle class="pip" cx=".72" cy=".72" r=".08"/>
+    </g>
+  </g>
+
+  <!-- Dado pequeño -->
+  <g class="die die--small" filter="url(#glow)">
+    <g stroke="url(#gold)" stroke-width="3" stroke-linejoin="round">
+      <polygon points="420,165 468,189 420,213 372,189" fill="url(#face)"/>
+      <polygon points="372,189 420,213 420,276 372,252" fill="url(#face)"/>
+      <polygon points="420,213 468,189 468,252 420,276" fill="url(#faceDark)"/>
+    </g>
+    <g fill="url(#pip)" transform="matrix(48,24,48,-24,372,189)">
+      <circle class="pip" cx=".22" cy=".22" r=".09"/><circle class="pip" cx=".78" cy=".22" r=".09"/>
+      <circle class="pip" cx=".5" cy=".5" r=".09"/><circle class="pip" cx=".22" cy=".78" r=".09"/>
+      <circle class="pip" cx=".78" cy=".78" r=".09"/>
+    </g>
+    <g fill="url(#pip)" transform="matrix(48,24,0,63,372,189)">
+      <circle class="pip" cx=".25" cy=".22" r=".09"/><circle class="pip" cx=".5" cy=".5" r=".09"/>
+      <circle class="pip" cx=".75" cy=".78" r=".09"/>
+    </g>
+    <g fill="url(#pip)" transform="matrix(48,-24,0,63,420,213)">
+      <circle class="pip" cx=".3" cy=".2" r=".09"/><circle class="pip" cx=".7" cy=".2" r=".09"/>
+      <circle class="pip" cx=".3" cy=".5" r=".09"/><circle class="pip" cx=".7" cy=".5" r=".09"/>
+      <circle class="pip" cx=".3" cy=".8" r=".09"/><circle class="pip" cx=".7" cy=".8" r=".09"/>
+    </g>
+  </g>
+
+  <!-- Cartas en abanico -->
+  <g filter="url(#glow)" stroke="url(#gold)">
+    <g class="card" style="--r:-24deg">
+      <rect x="307" y="228" width="46" height="68" rx="6" fill="#1E120A" stroke-width="2.5"/>
+      <rect x="312" y="233" width="36" height="58" rx="4" fill="none" stroke-width="1" opacity=".6"/>
+    </g>
+    <g class="card" style="--r:-10deg">
+      <rect x="307" y="228" width="46" height="68" rx="6" fill="#1E120A" stroke-width="2.5"/>
+      <rect x="312" y="233" width="36" height="58" rx="4" fill="none" stroke-width="1" opacity=".6"/>
+    </g>
+    <g class="card" style="--r:4deg">
+      <rect x="307" y="228" width="46" height="68" rx="6" fill="#1E120A" stroke-width="2.5"/>
+      <rect x="312" y="233" width="36" height="58" rx="4" fill="none" stroke-width="1" opacity=".6"/>
+    </g>
+    <g class="card" style="--r:18deg">
+      <rect x="307" y="228" width="46" height="68" rx="6" fill="#24160C" stroke-width="2.5"/>
+      <ellipse cx="330" cy="262" rx="13" ry="22" transform="rotate(30 330 262)" fill="none" stroke-width="2"/>
+      <path d="M330 252 L336 262 L330 272 L324 262 Z" fill="url(#pip)" stroke="none"/>
+    </g>
+  </g>
+
+  <!-- Título -->
+  <text class="txt title rise d1" x="300" y="382">DADOS &amp;</text>
+  <text class="txt title rise d2" x="300" y="458">BOCADOS</text>
+  <g clip-path="url(#titleClip)">
+    <rect class="shine" x="-220" y="300" width="140" height="180" fill="url(#shineGrad)"/>
+  </g>
+
+  <!-- Separador + lema -->
+  <g class="divider" stroke="#E9A93A" stroke-width="1.5">
+    <line x1="165" y1="487" x2="288" y2="487"/>
+    <line x1="312" y1="487" x2="435" y2="487"/>
+    <path d="M300 480 L307 487 L300 494 L293 487 Z" fill="#E9A93A"/>
+  </g>
+  <text class="txt tag rise d3" x="300" y="522">SABOR · JUEGOS · FAMILIA</text>
+</svg>

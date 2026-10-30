@@ -3,20 +3,21 @@ import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import Footer from '../components/Footer';
 
-const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
 let activeScrollAnimation = null;
 
-function smoothScrollTo(targetY, duration = 700) {
+function smoothScrollTo(targetY) {
   if (activeScrollAnimation) cancelAnimationFrame(activeScrollAnimation);
 
   const startY = window.scrollY;
   const distance = targetY - startY;
+  const duration = Math.min(450, Math.max(200, Math.abs(distance) * 0.3));
   const startTime = performance.now();
 
   const step = (now) => {
     const progress = Math.min((now - startTime) / duration, 1);
-    window.scrollTo(0, startY + distance * easeInOutCubic(progress));
+    window.scrollTo(0, startY + distance * easeOutCubic(progress));
 
     if (progress < 1) {
       activeScrollAnimation = requestAnimationFrame(step);

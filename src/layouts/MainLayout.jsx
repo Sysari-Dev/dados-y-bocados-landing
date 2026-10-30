@@ -10,12 +10,11 @@ export default function MainLayout({ children }) {
   const closeSidebar = () => setIsSidebarOpen(false);
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
+    <div className="min-h-screen flex flex-col bg-brand-dark text-brand-cream selection:bg-brand-gold selection:text-brand-dark">
       <Header onToggleSidebar={toggleSidebar} />
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
       
-      {/* El contenido inyectado por las páginas */}
-      <main className="flex-1 w-full max-w-7xl mx-auto p-4">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {children}
       </main>
 

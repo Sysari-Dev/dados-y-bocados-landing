@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-dark: #0E0B06;
+  --color-brand-card: #18130B;
+  --color-brand-gold: #F9B933;
+  --color-brand-gold-light: #FFC266;
+  --color-brand-cream: #FFF4E0;
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-brand-dark);
+  color: var(--color-brand-cream);
 }

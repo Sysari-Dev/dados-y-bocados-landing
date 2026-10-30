@@ -1,27 +1,107 @@
+import { MessageCircle, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { BUSINESS_INFO } from '../constants/businessInfo';
+
 export default function Sidebar({ isOpen, onClose }) {
-  if (!isOpen) return null;
+  const whatsappUrl = `https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent(
+    BUSINESS_INFO.whatsappMessage
+  )}`;
 
   return (
-    <div className="fixed inset-0 z-30 md:hidden">
-      <div 
-        className="fixed inset-0 bg-black/60" 
-        onClick={onClose} 
-      />
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-40 lg:hidden">
+          {/* Overlay oscuro con fade */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-xs"
+            onClick={onClose}
+          />
 
-      <aside className="fixed top-0 right-0 w-64 h-full bg-slate-900 text-white p-5 flex flex-col gap-6 shadow-xl">
-        <div className="flex justify-between items-center border-b border-slate-800 pb-3">
-          <span className="font-bold text-amber-400">Menú</span>
-          <button onClick={onClose} className="p-1 text-slate-400 hover:text-white">✕</button>
+          {/* Panel lateral con slide */}
+          <motion.aside
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 220 }}
+            className="fixed top-0 right-0 w-72 h-full bg-brand-dark border-l border-brand-gold/20 text-brand-cream p-6 flex flex-col justify-between shadow-2xl"
+          >
+            <div className="flex flex-col gap-6">
+              <div className="flex justify-between items-center border-b border-brand-gold/15 pb-4">
+                <span className="font-black text-base tracking-wider text-brand-gold">
+                  DADOS & BOCADOS
+                </span>
+                <button
+                  onClick={onClose}
+                  aria-label="Cerrar menú"
+                  className="p-1 text-stone-400 hover:text-white transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <nav className="flex flex-col gap-4 text-base font-medium">
+                <a
+                  href="#inicio"
+                  onClick={onClose}
+                  className="hover:text-brand-gold transition-colors py-1"
+                >
+                  Inicio
+                </a>
+                <a
+                  href="#experiencia"
+                  onClick={onClose}
+                  className="hover:text-brand-gold transition-colors py-1"
+                >
+                  Experiencia
+                </a>
+                <a
+                  href="#menu"
+                  onClick={onClose}
+                  className="hover:text-brand-gold transition-colors py-1"
+                >
+                  Menú
+                </a>
+                <a
+                  href="#juegos"
+                  onClick={onClose}
+                  className="hover:text-brand-gold transition-colors py-1"
+                >
+                  Juegos
+                </a>
+                <a
+                  href="#contacto"
+                  onClick={onClose}
+                  className="hover:text-brand-gold transition-colors py-1"
+                >
+                  Ubicación
+                </a>
+              </nav>
+            </div>
+
+            <div className="pt-6 border-t border-brand-gold/15 flex flex-col gap-3">
+              <motion.a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={onClose}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold bg-brand-gold text-brand-dark shadow-md shadow-brand-gold/20 text-sm cursor-pointer"
+              >
+                <MessageCircle className="w-4 h-4 stroke-[2.5]" />
+                <span>WhatsApp</span>
+              </motion.a>
+              <span className="text-[11px] text-center text-stone-500">
+                {BUSINESS_INFO.address}
+              </span>
+            </div>
+          </motion.aside>
         </div>
-
-        <nav className="flex flex-col gap-4 text-base">
-          <a href="#inicio" onClick={onClose} className="hover:text-amber-400 transition-colors">Inicio</a>
-          <a href="#experiencia" onClick={onClose} className="hover:text-amber-400 transition-colors">Experiencia</a>
-          <a href="#menu" onClick={onClose} className="hover:text-amber-400 transition-colors">Menú</a>
-          <a href="#juegos" onClick={onClose} className="hover:text-amber-400 transition-colors">Juegos</a>
-          <a href="#contacto" onClick={onClose} className="hover:text-amber-400 transition-colors">Ubicación y Horarios</a>
-        </nav>
-      </aside>
-    </div>
+      )}
+    </AnimatePresence>
   );
 }

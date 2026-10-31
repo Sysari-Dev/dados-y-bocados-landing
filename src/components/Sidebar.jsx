@@ -11,7 +11,6 @@ export default function Sidebar({ isOpen, onClose }) {
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          {/* Overlay oscuro con fade */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -20,8 +19,6 @@ export default function Sidebar({ isOpen, onClose }) {
             className="fixed inset-0 bg-black/80 backdrop-blur-xs"
             onClick={onClose}
           />
-
-          {/* Panel lateral con slide */}
           <motion.aside
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
@@ -42,7 +39,6 @@ export default function Sidebar({ isOpen, onClose }) {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-
               <nav className="flex flex-col gap-4 text-base font-medium">
                 <a
                   href="#inicio"
@@ -50,13 +46,6 @@ export default function Sidebar({ isOpen, onClose }) {
                   className="hover:text-brand-gold transition-colors py-1"
                 >
                   Inicio
-                </a>
-                <a
-                  href="#experiencia"
-                  onClick={onClose}
-                  className="hover:text-brand-gold transition-colors py-1"
-                >
-                  Experiencia
                 </a>
                 <a
                   href="#menu"
@@ -73,6 +62,13 @@ export default function Sidebar({ isOpen, onClose }) {
                   Juegos
                 </a>
                 <a
+                  href="#galeria"
+                  onClick={onClose}
+                  className="hover:text-brand-gold transition-colors py-1"
+                >
+                  Galería
+                </a>
+                <a
                   href="#contacto"
                   onClick={onClose}
                   className="hover:text-brand-gold transition-colors py-1"
@@ -81,7 +77,6 @@ export default function Sidebar({ isOpen, onClose }) {
                 </a>
               </nav>
             </div>
-
             <div className="pt-6 border-t border-brand-gold/15 flex flex-col gap-3">
               <motion.a
                 href={whatsappUrl}

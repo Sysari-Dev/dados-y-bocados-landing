@@ -19,25 +19,23 @@ export default function Header({ onToggleSidebar }) {
             {BUSINESS_INFO.tagline}
           </span>
         </a>
-
         <nav className="hidden lg:flex items-center gap-8 text-sm font-semibold tracking-wide">
           <a href="#inicio" className="text-brand-cream/80 hover:text-brand-gold transition-colors duration-200">
             Inicio
           </a>
-          <a href="#experiencia" className="text-brand-cream/80 hover:text-brand-gold transition-colors duration-200">
-            Experiencia
-          </a>
           <a href="#menu" className="text-brand-cream/80 hover:text-brand-gold transition-colors duration-200">
-            Menú
+            Carta
           </a>
           <a href="#juegos" className="text-brand-cream/80 hover:text-brand-gold transition-colors duration-200">
             Juegos
+          </a>
+           <a href="#galeria" className="text-brand-cream/80 hover:text-brand-gold transition-colors duration-200">
+            Galería
           </a>
           <a href="#contacto" className="text-brand-cream/80 hover:text-brand-gold transition-colors duration-200">
             Ubicación
           </a>
         </nav>
-
         <div className="flex items-center gap-3">
           <motion.a
             href={whatsappUrl}
@@ -74,7 +72,6 @@ export default function Header({ onToggleSidebar }) {
             <Menu className="w-6 h-6 stroke-2" />
           </button>
         </div>
-
       </div>
     </header>
   );

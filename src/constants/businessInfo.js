@@ -6,8 +6,8 @@ export const BUSINESS_INFO = {
   phone: "+51 928 348 691",
   whatsappNumber: "51928348691",
   whatsappMessage: "¡Hola Dados & Bocados! Quisiera más información sobre la carta y disponibilidad de juegos.",
-  address: "Abancay, Apurímac, Perú",
-  googleMapsUrl: "https://maps.google.com",
+  address: " Av. Abancay N.° 209, Abancay, Apurímac",
+  googleMapsUrl: "https://maps.app.goo.gl/Lfk6Q1DB7LfVmJ7w7",
   socials: {
     instagram: "https://instagram.com",
     facebook: "https://facebook.com",

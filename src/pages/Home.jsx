@@ -8,9 +8,9 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <HeroSection />
-      <ExperienceSection />
       <MenuSection />
       <GamesSection />
+      <ExperienceSection />
       <ContactSection />
     </div>
   );

@@ -12,7 +12,6 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <Reveal y={16} duration={0.5}>
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <span className="font-black text-xl tracking-wider text-brand-cream">
                 DADOS <span className="text-brand-gold">&</span> BOCADOS
@@ -24,7 +23,6 @@ export default function Footer() {
                 Frappes, postres, snacks y juegos de mesa en el corazón de Abancay.
               </p>
             </div>
-
             <nav className="flex flex-wrap justify-center gap-6 text-sm font-medium">
               <a href="#inicio" className="hover:text-brand-gold transition-colors">Inicio</a>
               <a href="#menu" className="hover:text-brand-gold transition-colors">Carta</a>
@@ -32,7 +30,6 @@ export default function Footer() {
               <a href="#galeria" className="hover:text-brand-gold transition-colors">Galería</a>
               <a href="#contacto" className="hover:text-brand-gold transition-colors">Ubicación</a>
             </nav>
-
             <div className="flex items-center gap-4">
               <a
                 href={whatsappUrl}
@@ -53,12 +50,20 @@ export default function Footer() {
                 <MapPin className="w-5 h-5 stroke-2" />
               </a>
             </div>
-
           </div>
-
           <div className="mt-8 pt-6 border-t border-brand-gold/10 text-center text-xs text-stone-500 flex flex-col sm:flex-row justify-between items-center gap-2">
             <p>© {new Date().getFullYear()} {BUSINESS_INFO.name}. Todos los derechos reservados.</p>
-            <p>{BUSINESS_INFO.address}</p>
+            <p className="flex items-center gap-1.5 text-stone-400">
+              <span>Desarrollado por</span>
+              <a
+                href="https://www.sysari.net"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-brand-gold hover:underline underline-offset-4 tracking-wide transition-colors"
+              >
+                Sysari
+              </a>
+            </p>
           </div>
         </Reveal>
       </div>

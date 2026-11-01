@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dadosybocados.com/sitemap.xml

@@ -1,18 +1,125 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tipografía de Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
       rel="stylesheet"
     />
-    <title>dados-y-bocados-landing</title>
+
+    <!-- SEO Principal -->
+    <title>Dados & Bocados</title>
+    <meta
+      name="description"
+      content="Primera experiencia familiar con cafetería en Abancay. Disfruta de frappes, waffles, postres y más de 11 juegos de mesa para compartir en familia y amigos en Av. Abancay 209."
+    />
+    <meta
+      name="keywords"
+      content="dados y bocados, abancay postres, diversion abancay, juegos de mesa abancay, ludoteca abancay, cafeteria abancay, frappes abancay, snacks abancay, sysari, sysari abancay"
+    />
+    <meta name="author" content="Sysari" />
+    <meta name="publisher" content="Sysari" />
+    <meta name="creator" content="Sysari" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://dadosybocados.sysari.net" />
+
+    <!-- Geolocalización Local (Abancay, Apurímac) -->
+    <meta name="geo.region" content="PE-APU" />
+    <meta name="geo.placename" content="Abancay" />
+    <meta name="geo.position" content="-13.6339;-72.8814" />
+    <meta name="ICBM" content="-13.6339, -72.8814" />
+
+    <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+    <meta property="og:type" content="business.business" />
+    <meta property="og:title" content="Dados & Bocados | Sabor, Juegos y Familia en Abancay" />
+    <meta
+      property="og:description"
+      content="Desconexión digital, convivencia presencial y diversión en mesa. Frappes artesanales, postres, piqueos y juegos de mesa en Av. Abancay 209."
+    />
+    <meta property="og:image" content="/logo.png" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:site_name" content="Dados & Bocados" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dados & Bocados | Juegos de Mesa y Cafetería en Abancay" />
+    <meta
+      name="twitter:description"
+      content="Ludoteca familiar y cafetería en Abancay. Ven a jugar y probar nuestros mejores frappes y postres."
+    />
+    <meta name="twitter:image" content="/logo.png" />
+
+    <!-- Metadatos técnicos de desarrollo -->
+    <meta name="application-name" content="Dados & Bocados Web" />
+    <meta name="generator" content="Sysari Software Ecosystem (https://www.sysari.net)" />
+
+    <!-- Schema.org / JSON-LD para Google Search y Maps -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CafeOrCoffeeShop",
+        "name": "Dados & Bocados",
+        "legalName": "Dados & Bocados S.R.L.",
+        "description": "Ludoteca familiar integrada con cafetería en Abancay, Apurímac. Juegos de mesa, frappes, postres y piqueos para compartir en familia y amigos.",
+        "image": "https://dadosybocados.com/logo.png",
+        "telephone": "+51928348691",
+        "priceRange": "S/ 2.50 - S/ 79.00",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Abancay N.° 209",
+          "addressLocality": "Abancay",
+          "addressRegion": "Apurímac",
+          "addressCountry": "PE"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -13.6339,
+          "longitude": -72.8814
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "16:00",
+            "closes": "22:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "15:00",
+            "closes": "23:00"
+          }
+        ],
+        "servesCuisine": "Cafetería, Postres, Frappes, Snacks",
+        "keywords": "dados y bocados, abancay postres, diversion abancay, juegos de mesa abancay, ludoteca abancay, sysari, sysari abancay",
+        "founder": {
+          "@type": "Organization",
+          "name": "Dados & Bocados S.R.L."
+        },
+        "creator": {
+          "@type": "Organization",
+          "name": "Sysari",
+          "url": "https://www.sysari.net"
+        }
+      }
+    </script>
   </head>
-  <body>
+  <body class="bg-[#0E0B06] text-stone-200 antialiased selection:bg-[#E5A93C] selection:text-[#0E0B06]">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

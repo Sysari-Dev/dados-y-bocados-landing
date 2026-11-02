@@ -8,9 +8,8 @@ export default function ContactSection() {
     BUSINESS_INFO.whatsappMessage
   )}`;
 
-  const mapsSearchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    BUSINESS_INFO.address
-  )}`;
+  const { lat, lng } = BUSINESS_INFO.coordinates;
+  const mapsEmbedUrl = `https://maps.google.com/maps?q=${lat},${lng}&z=17&output=embed&hl=es`;
 
   const isOpenNow = useMemo(() => {
     const now = new Date();
@@ -43,8 +42,8 @@ export default function ContactSection() {
             <div className="lg:col-span-7 relative h-95 sm:h-110 lg:h-97.5 w-full rounded-none lg:rounded-3xl overflow-hidden lg:border lg:border-brand-gold/30 lg:shadow-2xl">
               <iframe
                 title="Ubicación en Google Maps"
-                src="https://maps.google.com/maps?q=Abancay+Apurimac+Peru&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                className="w-full h-full border-0 filter invert-90 hue-rotate-180 contrast-120"
+                src={mapsEmbedUrl}
+                className="w-full h-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
@@ -54,7 +53,7 @@ export default function ContactSection() {
                   <span>Abancay, Perú</span>
                 </div>
                 <a
-                  href={mapsSearchUrl}
+                  href={BUSINESS_INFO.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-gold text-brand-dark text-xs font-bold shadow-lg hover:bg-brand-gold-light active:scale-95 transition-all pointer-events-auto"
@@ -102,11 +101,11 @@ export default function ContactSection() {
                   <h3 className="font-bold text-sm text-brand-cream">Horarios</h3>
                   <div className="mt-1 space-y-0.5 text-xs">
                     <div className="flex justify-between text-stone-300">
-                      <span>L-V:</span>
+                      <span>Lunes - Viernes:</span>
                       <span className="font-bold text-brand-gold">{BUSINESS_INFO.schedule.weekdays}</span>
                     </div>
                     <div className="flex justify-between text-stone-300">
-                      <span>S-D:</span>
+                      <span>Sábado - Domingo:</span>
                       <span className="font-bold text-brand-gold">{BUSINESS_INFO.schedule.weekends}</span>
                     </div>
                   </div>

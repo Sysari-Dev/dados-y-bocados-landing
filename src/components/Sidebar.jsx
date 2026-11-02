@@ -1,6 +1,7 @@
 import { MessageCircle, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { BUSINESS_INFO } from '../constants/businessInfo';
+import { scrollToSection } from '../utils/scrollToSection';
 
 export default function Sidebar({ isOpen, onClose }) {
   const whatsappUrl = `https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent(
@@ -28,7 +29,7 @@ export default function Sidebar({ isOpen, onClose }) {
           >
             <div className="flex flex-col gap-6">
               <div className="flex justify-between items-center border-b border-brand-gold/15 pb-4">
-                <span className="font-black text-base tracking-wider text-brand-gold">
+                <span className="font-display text-xl tracking-[0.08em] text-brand-gold">
                   DADOS & BOCADOS
                 </span>
                 <button
@@ -42,35 +43,50 @@ export default function Sidebar({ isOpen, onClose }) {
               <nav className="flex flex-col gap-4 text-base font-medium">
                 <a
                   href="#inicio"
-                  onClick={onClose}
+                  onClick={(event) => {
+                    onClose();
+                    scrollToSection(event, 'inicio');
+                  }}
                   className="hover:text-brand-gold transition-colors py-1"
                 >
                   Inicio
                 </a>
                 <a
                   href="#menu"
-                  onClick={onClose}
+                  onClick={(event) => {
+                    onClose();
+                    scrollToSection(event, 'menu');
+                  }}
                   className="hover:text-brand-gold transition-colors py-1"
                 >
                   Menú
                 </a>
                 <a
                   href="#juegos"
-                  onClick={onClose}
+                  onClick={(event) => {
+                    onClose();
+                    scrollToSection(event, 'juegos');
+                  }}
                   className="hover:text-brand-gold transition-colors py-1"
                 >
                   Juegos
                 </a>
                 <a
                   href="#galeria"
-                  onClick={onClose}
+                  onClick={(event) => {
+                    onClose();
+                    scrollToSection(event, 'galeria');
+                  }}
                   className="hover:text-brand-gold transition-colors py-1"
                 >
                   Galería
                 </a>
                 <a
                   href="#contacto"
-                  onClick={onClose}
+                  onClick={(event) => {
+                    onClose();
+                    scrollToSection(event, 'contacto');
+                  }}
                   className="hover:text-brand-gold transition-colors py-1"
                 >
                   Ubicación

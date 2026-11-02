@@ -1,9 +1,10 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageCircle, Download, Sparkles, ChevronLeft, ChevronRight, ZoomIn, X } from 'lucide-react';
 import { MENU_SECTIONS } from '../../constants/menuData';
 import { BUSINESS_INFO } from '../../constants/businessInfo';
 import Reveal from '../Reveal';
+import LazyImage from '../LazyImage';
 import carta1 from '../../assets/images/carta1.jpeg';
 import carta2 from '../../assets/images/carta2.jpeg';
 
@@ -11,10 +12,32 @@ export default function MenuSection() {
   const [activeCategory, setActiveCategory] = useState(MENU_SECTIONS[0].id);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const scrollContainerRef = useRef(null);
+  const activeButtonRef = useRef(null);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    const active = activeButtonRef.current;
+    if (!container || !active) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const activeRect = active.getBoundingClientRect();
+    const targetLeft =
+      container.scrollLeft +
+      (activeRect.left - containerRect.left) -
+      (container.clientWidth - activeRect.width) / 2;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    container.scrollTo({
+      left: targetLeft,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    });
+  }, [activeCategory]);
 
   const currentCategory = MENU_SECTIONS.find((cat) => cat.id === activeCategory);
   const isAlcoholSection = activeCategory === "tragos";
   const displayedImage = isAlcoholSection ? carta2 : carta1;
+  const displayedImageWidth = isAlcoholSection ? 768 : 1024;
+  const displayedImageHeight = isAlcoholSection ? 1364 : 1535;
   const downloadFileName = isAlcoholSection ? "carta-juegos-bar.jpeg" : "carta-cafeteria-bocados.jpeg";
 
   const handleScroll = (direction) => {
@@ -50,13 +73,14 @@ export default function MenuSection() {
 
           <div
             ref={scrollContainerRef}
-            className="w-full overflow-x-auto flex items-center gap-2 px-2 sm:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] scrollbar-none"
+            className="w-full overflow-x-auto flex items-center gap-2 px-2 sm:px-3 py-1.5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] scrollbar-none"
           >
             {MENU_SECTIONS.map((cat) => {
               const isActive = activeCategory === cat.id;
               return (
                 <button
                   key={cat.id}
+                  ref={isActive ? activeButtonRef : null}
                   onClick={() => setActiveCategory(cat.id)}
                   className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide shrink-0 transition-all duration-200 cursor-pointer ${
                     isActive
@@ -88,9 +112,11 @@ export default function MenuSection() {
             }}
             className="relative rounded-2xl overflow-hidden border border-brand-gold/25 bg-brand-card p-2 sm:p-3 shadow-xl cursor-pointer lg:cursor-default"
           >
-            <img
+            <LazyImage
               src={displayedImage}
               alt="Carta Dados y Bocados"
+              width={displayedImageWidth}
+              height={displayedImageHeight}
               className="w-full h-auto max-h-130 object-contain rounded-xl mx-auto"
             />
 
@@ -211,6 +237,8 @@ export default function MenuSection() {
               <img
                 src={displayedImage}
                 alt="Carta ampliada"
+                width={displayedImageWidth}
+                height={displayedImageHeight}
                 className="w-full h-auto max-h-[88vh] object-contain rounded-xl"
               />
             </motion.div>

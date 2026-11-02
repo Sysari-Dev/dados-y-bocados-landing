@@ -10,7 +10,7 @@ export const BUSINESS_INFO = {
   coordinates: { lat: -13.6380639, lng: -72.8835766 },
   googleMapsUrl: "https://maps.app.goo.gl/ZgVueTL5FQutyb376",
   socials: {
-    instagram: "https://www.instagram.com/dadosybocados/",
+    instagram: "https://www.instagram.com/dadosybocados_abancay/",
     facebook: "https://www.facebook.com/profile.php?id=61594966057927",
     tiktok: "https://www.tiktok.com/@dadosybocadosabancay",
   },
